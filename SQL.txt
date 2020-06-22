@@ -1,0 +1,42 @@
+use mis;
+
+drop table t_goods;
+drop table t_cart;
+
+/*商品表*/
+create table t_goods(
+ id varchar(20),  /*商品编码*/
+ name varchar(100),  /*商品名称*/
+ thumbnail varchar(200)  default 'upload/placeholder.png',  /*缩略图 */
+ content longtext,  /*商品描述*/
+ price float(8,2) default 0,  /*价格*/
+ flag tinyint default 0, /* 0 正常销售 1 表示下架*/
+ primary key (id)
+);
+
+/*模拟商品数据*/
+insert into t_goods (id,name,price,thumbnail ,content) values 
+('1','1281G曲奇大礼包',15,'upload/1.jpg','图文并茂描述商品详情'),
+('2','海鸭蛋黄酱',20,'upload/2.jpg','图文并茂描述商品详情'),
+('3','麻辣小龙虾4-6钱中虾',50,'upload/3.jpg','图文并茂描述商品详情'),
+('4','麦提莎520g',34,'upload/4.jpg','图文并茂描述商品详情'),
+('5','千丝绿豆饼整2箱',25,'upload/5.jpg','图文并茂描述商品详情'),
+('6','素食粥6桶',15,'upload/6.jpg','图文并茂描述商品详情'),
+('7','泰国榴莲',45,'upload/7.jpg','图文并茂描述商品详情'),
+('8','新鲜秭归伦晚春脐橙',15,'upload/8.jpg','图文并茂描述商品详情'),
+('9','烟台大樱桃',112,'upload/9.jpg','图文并茂描述商品详情'),
+('10','越南进口板栗红薯',23,'upload/10.jpg','图文并茂描述商品详情');
+
+/*购物车表*/
+create table t_cart(
+  userid  varchar(12),	/*用户名 目前只是‘sd’用户*/
+  goodsid varchar(20),   /*商品编码*/
+  num int not null default 1 ,  /*数量*/
+  primary key (userid,goodsid)
+);
+/*模拟购物车数据*/
+Insert into t_cart (userid,goodsid,num) values
+('sd','3',1),
+('sd','5',2),
+('sd','10',2);
+
